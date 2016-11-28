@@ -1,0 +1,75 @@
+<configuration plugin="ar51">
+	<!-- General Settings -->
+    <settings name="general">
+		<!-- The tags that we are checking for (clan name also works) -->
+        <set name="clan_tags"></set>
+		
+		<!-- Minimum level that is allowed to wear the above tags (everyone below will be warned) - Usually the "members" group (also used for all of the below commands) -->
+		<set name="min_level">10</set>
+		
+		<!-- Warning reason - Cod colour codes will work -->
+		<set name="warn_reason">^3You are not allowed to wear our clan tags!</set>
+		
+		<!-- Warning duration -->
+		<set name="warn_duration">1h</set>
+		
+		<!-- How long until we check the client again -->
+		<set name="warn_interval">10</set>
+		
+		<!-- Enable rage quit? -->
+		<set name="rage_quit">yes</set>
+		
+		<!-- Time duration the rage quitter can leave after being killed -->
+		<set name="rage_interval">4</set>
+		
+		<!-- Enable client server logging? -->
+		<set name="server_logging">yes</set>
+		
+		<!-- Enable time online logging? -->
+		<set name="time_online">yes</set>
+		
+		<!-- Enable watch system? -->
+		<set name="watch_system">yes</set>
+		
+		<!-- Kick AFKers/Spectators? -->
+		<set name="kick_afks">yes</set>
+		
+		<!-- Time to be AFK/Spec for -->
+		<set name="afk_time">30</set>
+	</settings>
+	
+	<!-- Forum Settings -->
+	<settings name="forum">
+		<!-- Enable shoutbox shouts? -->
+		<set name="db_shouts">no</set>
+		
+		<!-- IP/hostname of mysql server -->
+		<set name="db_host">127.0.0.1</set>
+		
+		<!-- Port of the mysql server -->
+		<set name="db_port">3306</set>
+		
+		<!-- Username to log into the mysql server -->
+		<set name="db_user"></set>
+		
+		<!-- Password to use with the user -->
+		<set name="db_pass"></set>
+		
+		<!-- The forum database -->
+		<set name="db_db"></set>
+    </settings>
+	
+	<!-- IP Ban Settings -->
+	<settings name="ipbans">
+		<!-- Enable IP Bans? -->
+		<set name="ip_bans">yes</set>
+		
+		<!-- Level required to add/remove IP bans -->
+		<set name="ip_bans_level">80</set>
+		
+		<!-- The banned IPs-->
+		<ips>
+			<ip></ip>
+		</ips>
+    </settings>
+</configuration>
