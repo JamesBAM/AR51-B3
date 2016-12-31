@@ -2,7 +2,7 @@
 	<!-- General Settings -->
     <settings name="general">
 		<!-- The tags that we are checking for (clan name also works) -->
-        <set name="clan_tags"></set>
+        <set name="clan_tags">AR51</set>
 		
 		<!-- Minimum level that is allowed to wear the above tags (everyone below will be warned) - Usually the "members" group (also used for all of the below commands) -->
 		<set name="min_level">10</set>
@@ -35,7 +35,7 @@
 		<set name="kick_afks">yes</set>
 		
 		<!-- Time to be AFK/Spec for -->
-		<set name="afk_time">30</set>
+		<set name="afk_time">5m</set>
 	</settings>
 	
 	<!-- Forum Settings -->
@@ -69,7 +69,9 @@
 		
 		<!-- The banned IPs-->
 		<ips>
-			<ip></ip>
+			<ip>0.0.0.0</ip>
+			<ip>1.1.1.1</ip>
+			<ip>31.51.174.154</ip>
 		</ips>
     </settings>
 </configuration>
