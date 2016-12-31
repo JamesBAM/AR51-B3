@@ -157,7 +157,7 @@ class Ar51Plugin(b3.plugin.Plugin):
         # Create the mysql connection and register the command
         if self.db_shouts:
             self.debug("db_shouts is enabled")
-            self._adminPlugin.registerCommand(self, 'admin', 0, self.cmd_admin, "calladmin")
+            self._adminPlugin.registerCommand(self, 'admin', 90, self.cmd_admin, "calladmin")
             self.forum = Forum(self.db_host, self.db_port, self.db_user, self.db_pass, self.db_db)
         # Watch system
         if self.watch_system:
@@ -292,7 +292,7 @@ class Ar51Plugin(b3.plugin.Plugin):
             if sclient:
                 q = "INSERT INTO watch_list (client_id, client_name, admin_id, admin_name, time_add) VALUES (%i, '%s', %i, '%s', %i)" % (sclient.id, sclient.name, client.id, client.name, time.time())
                 self.b3Query(q)
-                client.message("Client %s @%s has been added to the watch list" % (sclient.exactName, sclient.id))
+                client.message("Client %s (@%s) has been added to the watch list" % (sclient.exactName, sclient.id))
         else:
             cmd.sayLoudOrPM(client, "You need to provide a name/CID/DBID: !watch <name/cid/dbid>")
             
@@ -419,7 +419,7 @@ class Ar51Plugin(b3.plugin.Plugin):
         import dateutil.relativedelta
         dt1 = datetime.datetime.fromtimestamp(0)
         dt2 = datetime.datetime.fromtimestamp(int(t))
-        rd = dateutil.relativedelta.relativedelta (dt2, dt1)
+        rd = dateutil.relativedelta.relativedelta(dt2, dt1)
         return "%dd, %dh, %dm and %ds" % (rd.days, rd.hours, rd.minutes, rd.seconds)
     
     def forumQuery(self, query):
