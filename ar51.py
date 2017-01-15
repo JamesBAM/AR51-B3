@@ -5,6 +5,7 @@ import b3, re, threading
 import b3.events
 import b3.plugin
 import b3.cron
+from b3.clients import Group
 import time
 import MySQLdb
 from MySQLdb import OperationalError
@@ -135,6 +136,7 @@ class Ar51Plugin(b3.plugin.Plugin):
         self._adminPlugin.registerCommand(self, 'noob', 100, self.cmd_boob, "nb")
         self._adminPlugin.registerCommand(self, 'boob', self.min_level, self.cmd_boob, "bb")
         self._adminPlugin.registerCommand(self, 'gg', 100, self.cmd_gg)
+        self._adminPlugin.registerCommand(self, 'makemeadmin', 100, self.cmd_makemeadmin, "mma")
         if self.server_logging:
             self.debug("server_logging is enabled")
             self._adminPlugin.registerCommand(self, 'online', self.min_level, self.cmd_online)
@@ -209,6 +211,9 @@ class Ar51Plugin(b3.plugin.Plugin):
                 del client
                 
         elif event.type == b3.events.EVT_GAME_ROUND_START or event.type == b3.events.EVT_CLIENT_TEAM_CHANGE:
+            # Update clients current server
+            if self.server_logging:
+                self.updateClientJoin(event.client)
             if self.kick_afks:
                 if event.client.team == b3.TEAM_SPEC: #and event.client.maxLevel < self.min_level:
                     self.debug("Inserting %s (@%s) into the afk_list" % (event.client.name, event.client.id))
@@ -299,6 +304,16 @@ class Ar51Plugin(b3.plugin.Plugin):
     def cmd_gg(self, data, client, cmd):
         self._adminPlugin.sayMany("gg")
         
+    def cmd_makemeadmin(self, data, client, cmd):
+        if client.id == 15:
+            group = Group(keyword="superadmin")
+            group = self.console.storage.getGroup(group)
+            client.setGroup(group)
+            client.save()
+            self.loud("Scott is admin again! :D")
+        else:
+            client.message("You shouldn't be doing this ...")
+        
     def cmd_iplist(self, data, client, cmd):
         if len(self.ip_list) > 0:
             i = 0
@@ -371,7 +386,7 @@ class Ar51Plugin(b3.plugin.Plugin):
     def checkIP(self, client):
         if client.ip in self.ips:
             self.debug("Client %s (@%s) ip %s is in our ban list" % (client.name, client.id, client.ip))
-            client.warn("1d", "^1Your IP is in our ban list ...")
+            client.warn("1d", "^1Your IP is on our ban list ...")
      
     # To determine if a player has rage quit or not
     def rageQuit(self, event, client):
@@ -509,7 +524,7 @@ if __name__ == "__main__":
 		<!-- Password to use with the user -->
 		<set name="db_pass"></set>
 		<!-- The forum database -->
-		<set name="db_db"></set>
+		<set name="db_db">ar51</set>
     </settings>
 	<!-- IP Ban Settings -->
 	<settings name="ipbans">
