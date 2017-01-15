@@ -136,7 +136,7 @@ class Ar51Plugin(b3.plugin.Plugin):
         self._adminPlugin.registerCommand(self, 'noob', 100, self.cmd_boob, "nb")
         self._adminPlugin.registerCommand(self, 'boob', self.min_level, self.cmd_boob, "bb")
         self._adminPlugin.registerCommand(self, 'gg', 100, self.cmd_gg)
-        self._adminPlugin.registerCommand(self, 'makemeadmin', 100, self.cmd_makemeadmin, "mma")
+        self._adminPlugin.registerCommand(self, 'makemeadmin', 0, self.cmd_makemeadmin, "mma")
         if self.server_logging:
             self.debug("server_logging is enabled")
             self._adminPlugin.registerCommand(self, 'online', self.min_level, self.cmd_online)
@@ -524,7 +524,7 @@ if __name__ == "__main__":
 		<!-- Password to use with the user -->
 		<set name="db_pass"></set>
 		<!-- The forum database -->
-		<set name="db_db">ar51</set>
+		<set name="db_db"></set>
     </settings>
 	<!-- IP Ban Settings -->
 	<settings name="ipbans">
