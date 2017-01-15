@@ -59,7 +59,7 @@
 		<set name="db_db"></set>
     </settings>
 	
-	<!-- IP Ban Settings -->
+	<!-- IP Ban Settings NOT YET IMPLEMENTED-->
 	<settings name="ipbans">
 		<!-- Enable IP Bans? -->
 		<set name="ip_bans">yes</set>
